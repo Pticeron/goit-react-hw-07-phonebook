@@ -12,6 +12,24 @@ const initialState = {
 ],
 };
 
+// 
+// const tasksSlice = {
+//   name: "tasks",
+//   initialState: {
+//     items: [],
+//     isLoading: false,
+//     error: null,
+//   },
+//   reducers: {
+//     // Виконається в момент старту HTTP-запиту
+//     fetchingInProgress(state) {},
+//     // Виконається якщо HTTP-запит завершився успішно
+//     fetchingSuccess() {},
+//     // Виконається якщо HTTP-запит завершився з помилкою
+//     fetchingError() {},
+//   },
+// };
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: initialState,
