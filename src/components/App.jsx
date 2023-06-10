@@ -3,8 +3,9 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { fetchContacts } from 'redux/operation';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { selectIsLoading, selectError } from 'redux/selectors';
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,18 +28,12 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <h1>Phonebook</h1>
+       <h1>Phonebook</h1>
       <ContactForm />
-      {isLoading && !error && <b>Request in progress...</b>}
-      {items.length ? (
-        <div>
-          <h2> Contacts</h2>
-          <Filter />
-          <ContactList />
-        </div>
-      ) : (
-        <h2>No any contacts</h2>
-      )}
+      <h2> Contacts</h2>
+      <Filter />
+      {isLoading && !error && <b>Request in progress</b>}
+      <ContactList />
     </div>
   );
 };
