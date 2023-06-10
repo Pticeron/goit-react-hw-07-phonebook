@@ -4,33 +4,24 @@ import { addContact } from 'redux/operation';
 import { selectContacts } from 'redux/selectors';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
+
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const formData = data => {
-    const equalName = contacts.find(
-      el => el.name.toLowerCase() === data.name.toLowerCase()
+  const handleSubmit = (values, { resetForm }) => {
+    const contactName = values.name.toLowerCase();
+    const isSaved = contacts.find(
+      contact => contact.name.toLowerCase() === contactName
     );
-    const equalNumber = contacts.find(
-      el => el.number.toLowerCase() === data.number.toLowerCase()
-    );
-
-    if (equalName)
-      return alert(`This name ${equalName.name} is already in contacts.`);
-    if (equalNumber)
-      return alert(
-        `This number ${equalNumber.number} is already in contacts and belongs to ${equalNumber.name}.`
-      );
-
-    dispatch(addContact(data));
+    if (isSaved) {
+      alert(`${values.name} is already in contacts`);
+    } else {
+      dispatch(addContact(values));
+    }
+    resetForm();
   };
-
-  const handleSubmit = (values, action) => {
-    formData(values);
-    action.resetForm();
-  };
-
+  
   return (
     <Formik initialValues={{ name:'', number:'' }} onSubmit={handleSubmit}>
       <Form className={css.form}>
