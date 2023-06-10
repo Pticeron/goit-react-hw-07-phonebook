@@ -9,14 +9,12 @@ const filterSlice = createSlice({
   initialState: initialStateFilter,
 
   reducers: {
-    setFilter: {
-      reducer(state, action) {
+    setFilter(state, action) {
         state.filter = action.payload.toLowerCase();
       },
     },
-  },
 });
 
 export const { setFilter } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
-export const getFilter = state => state.filter.filter;
+
