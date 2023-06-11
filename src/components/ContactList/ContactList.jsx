@@ -27,14 +27,14 @@ export const ContactList = () => {
 
   return (
     <div className={css.wraperContactList}>
-        <ul className={css.conactList}>
-        {visibleContacts().map(({ id, name, number }) => (
+      <ul className={css.contactList}>
+        {visibleContacts.map((contact, id) => (
           <li key={id} className={css.contactListItem}>
-            {name}: {number}
+            {contact.name}: {contact.phone}
             <button
               type="button"
               className={css.contactListItemBtn}
-              onClick={() => onDeleteContact(id)}
+              onClick={() => onDeleteContact(contact.id)}
             >
               Delete
             </button>
