@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { selectIsLoading, selectError, selectContacts } from 'redux/selectors';
 
-
 export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
@@ -29,10 +28,9 @@ export const App = () => {
         color: '#010101',
       }}
     >
-       <h1>Phonebook</h1>
+      <h1>Phonebook</h1>
       <ContactForm />
-      {contactList.length > 0 && 
-      <h2> Contacts</h2>}
+      <h2> Contacts</h2>
       <Filter />
       {isLoading && !error && <b>Request in progress</b>}
       <ContactList />

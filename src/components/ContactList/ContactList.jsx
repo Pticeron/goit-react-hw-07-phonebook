@@ -1,33 +1,41 @@
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/operation';
 import css from './ContactList.module.css';
 
+const getVisibleContacts = (contacts, filter) => {
+  if (!filter) {
+    return contacts;
+  } else {
+    return contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(filter.toLowerCase());
+    });
+  }
+};
+
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  const visibleContacts = getVisibleContacts(contacts, filter);
+
   const dispatch = useDispatch();
-
-  const getVisibleContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter)
-    );
-  };
-
-  const handleDeleteContact = userId => {
-    dispatch(deleteContact(userId));
+ 
+  const onDeleteContact = id => {
+    dispatch(deleteContact(id)); 
   };
 
   return (
     <div className={css.wraperContactList}>
-      <ul className={css.conactList}>
-        {getVisibleContacts().map(({ id, name, number }) => (
+        <ul className={css.conactList}>
+        {visibleContacts().map(({ id, name, number }) => (
           <li key={id} className={css.contactListItem}>
-          {name}: {number}
+            {name}: {number}
             <button
               type="button"
               className={css.contactListItemBtn}
-              onClick={() => handleDeleteContact(id)}>
+              onClick={() => onDeleteContact(id)}
+            >
               Delete
             </button>
           </li>
