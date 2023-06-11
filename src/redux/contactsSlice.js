@@ -7,7 +7,6 @@ const initialState = {
   error: null,
 };
 
-
 const pendingReduser = state => {
   state.isLoading = true;
   state.error = null;
@@ -49,3 +48,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+

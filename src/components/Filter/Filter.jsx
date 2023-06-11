@@ -4,12 +4,12 @@ import { selectFilter } from 'redux/selectors';
 import css from './Filter.module.css';
 
 export const Filter = () => {
-  const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     dispatch(setFilter(e.target.value));
-  };
+  }
 
   return (
     <div>
@@ -17,11 +17,11 @@ export const Filter = () => {
       <input
         className={css.filterName}
         type="text"
+        name="filter"
+        placeholder="Find contacts by name"
         value={filter}
-        placeholder="Enter filter"
         onChange={handleChange}
       />
     </div>
   );
 };
-
